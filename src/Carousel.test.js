@@ -38,7 +38,8 @@ it("makes sure left arrow is missing on first image", function() {
   const { queryByTestId } = render(<Carousel />);
 
   // expect the left arrow not to show on the first image
-  expect(queryByTestId("left-arrow")).not.toBeInTheDocument();
+  expect(queryByTestId("left-arrow")).toHaveClass("hidden");
+  expect(queryByTestId("right-arrow")).not.toHaveClass("hidden");
 });
 
 it("makes sure right arrow is missing on last image", function() {
@@ -49,7 +50,8 @@ it("makes sure right arrow is missing on last image", function() {
   fireEvent.click(rightArrow);
 
   // expect the right arrow not to show on the last image
-  expect(rightArrow).not.toBeInTheDocument();
+  expect(queryByTestId("left-arrow")).not.toHaveClass("hidden");
+  expect(queryByTestId("right-arrow")).toHaveClass("hidden");
 });
 
 // smoke test
