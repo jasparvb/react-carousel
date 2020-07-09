@@ -34,6 +34,24 @@ it("works when you click on the left arrow", function() {
   expect(queryByAltText("Photo by Pratik Patel on Unsplash")).not.toBeInTheDocument();
 });
 
+it("makes sure left arrow is missing on first image", function() {
+  const { queryByTestId } = render(<Carousel />);
+
+  // expect the left arrow not to show on the first image
+  expect(queryByTestId("left-arrow")).not.toBeInTheDocument();
+});
+
+it("makes sure right arrow is missing on last image", function() {
+  const { queryByTestId } = render(<Carousel />);
+  // move forward in the carousel
+  const rightArrow = queryByTestId("right-arrow");
+  fireEvent.click(rightArrow);
+  fireEvent.click(rightArrow);
+
+  // expect the right arrow not to show on the last image
+  expect(rightArrow).not.toBeInTheDocument();
+});
+
 // smoke test
 it("renders without crashing", function() {
   render(<Carousel />);
