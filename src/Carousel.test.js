@@ -20,7 +20,10 @@ it("works when you click on the right arrow", function() {
 
 it("works when you click on the left arrow", function() {
   const { queryByTestId, queryByAltText } = render(<Carousel />);
-
+  // move forward in the carousel
+  const rightArrow = queryByTestId("right-arrow");
+  fireEvent.click(rightArrow);
+  
   
   // move backward in the carousel
   const leftArrow = queryByTestId("left-arrow");
